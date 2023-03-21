@@ -1,4 +1,2 @@
 # Botmate
 A chatbot
-
-``Demo``
