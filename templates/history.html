@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+
+    {% if message != "No history found" %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="text-start">Chat History</th>
+                </tr>
+            </thead>
+	    <tbody>
+                {% for chat in message  %}
+                    <tr>
+                        <td class="text-start"> {{ chat }} </td>
+                   </tr>
+                {% endfor %}
+	    </tbody>
+	</table>
+    {% else %}
+	<p>{{ message }} </p>
+    {% endif %}
+
+{% endblock %}
