@@ -131,6 +131,26 @@ def chat():
 
     return render_template('chat.html', **locals())
 
+@app.route('/image', methods = ['GET', 'POST'])
+@login_required
+def image():
+    """ Generate images"""
+    if request.method == 'POST':
+        image = ""
+        prt = request.form['prompt']
+        try:
+            response = openai.Image.create(
+                    prompt = prt,
+                    n=1,
+                    size="1024x1024"
+                )
+            image_url = response['data'][0]['url']
+            return image_url, 200
+            # return render_template('image.html', image=image_url)
+        except openai.error.OpenAIError as e:
+            return render_template('image.html', image=e.error)
+
+    return render_template('image.html')
 
 @app.route('/history')
 @login_required
