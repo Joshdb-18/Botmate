@@ -4,8 +4,11 @@ from flask import Flask, render_template, jsonify, request, flash, logging, url_
 from flask_session import Session
 from flask_sqlalchemy import SQLAlchemy
 from helpers import apology, login_required
+from IPython.display import Image, display
 import openai
 import os
+import requests
+import json
 from werkzeug.security import check_password_hash, generate_password_hash
 
 app = Flask(__name__)
@@ -136,19 +139,8 @@ def chat():
 def image():
     """ Generate images"""
     if request.method == 'POST':
-        image = ""
-        prt = request.form['prompt']
-        try:
-            response = openai.Image.create(
-                    prompt = prt,
-                    n=1,
-                    size="1024x1024"
-                )
-            image_url = response['data'][0]['url']
-            return image_url, 200
-            # return render_template('image.html', image=image_url)
-        except openai.error.OpenAIError as e:
-            return render_template('image.html', image=e.error)
+        query = request.form['prompt']
+        return render_template('image.html', image="No Image Found")
 
     return render_template('image.html')
 
