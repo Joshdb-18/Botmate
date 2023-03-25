@@ -3,7 +3,12 @@
 {% block title %}
     Chat
 {% endblock %}
-
+{% with msg = get_flashed_messages() %}
+{% if msg %}
+<header class="alert alert-primary border text-center" role="alert">
+		{{ msg }}
+{% endif %}
+{% endwith %}
 {% block main %}
     <div class="flex-shrink-0">
       <div class="container">
