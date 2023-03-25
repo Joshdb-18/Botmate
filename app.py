@@ -89,6 +89,8 @@ def register():
         elif passwd != confirm:
             return apology("Password must match", 400)
 
+        passwd = generate_password_hash(passwd, method='pbkdf2:sha256',
+                                        salt_length=8)
         register = User(username=name, password=passwd)
         db.session.add(register)
         db.session.commit()
@@ -112,16 +114,19 @@ def login():
         name = request.form.get("username")
         passw = request.form.get("password")
         if not name:
-            return apology("must provide username", 403)
+            return apology("Must provide username", 403)
 
         # Ensure password was submitted
         elif not passw:
-            return apology("must provide password", 403)
+            return apology("Must provide password", 403)
 
-        login = User.query.filter_by(username=name, password=passw).first()
-        if login is not None:
+        login = User.query.filter_by(username=name).first()
+        if login and check_password_hash(login.password, passw):
             session['user_id'] = True
-            return render_template("index.html")
+            flash("Welcome!")
+            return render_template("chat.html")
+
+        return apology("Invalid username and/or password", 403)
 
     # User reached route via GET (as by clicking a link or via redirect)
     return render_template("login.html")
@@ -133,9 +138,17 @@ def chat():
     """ Chat with Botmate"""
     if request.method == 'POST':
         prompt = request.form['prompt']
-        his = User(history=prompt)
-        db.session.add(his)
-        db.session.commit()
+        id = session["user_id"]
+        user = User.query.filter_by(id=id).first()
+        chat_history = user.history or ""
+        if chat_history is None:
+            update = User(history=prompt)
+            db.session.add(update)
+            db.session.commit()
+        else:
+            chat_history += prompt + "\n"
+            user.history = chat_history
+            db.session.commit()
         res = {}
         res['answer'] = aiapi.generateChatResponse(prompt)
         return jsonify(res), 200
@@ -159,11 +172,11 @@ def image():
 def history():
     """Shows chat history"""
     message = ""
-    id = session["user_id"]
-    chat = User.query.filter_by(id=id).first()
+    user_id = session["user_id"]
+    chat = User.query.filter_by(id=user_id).first()
     history = chat.history
-    if history is not None:
-        return render_template("history.html", message=history)
+    if history:
+        return render_template("history.html", message=history.split('\n'))
     else:
         return render_template("history.html", message="No history found")
 
