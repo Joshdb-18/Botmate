@@ -32,7 +32,7 @@ List of classes and functions in this app:
 * `class DevelopmentConfig(Config)` - configures the secret key and the api key
 
 [aiapi.py](aiapi.py) - Sets the bot role
-* `def geNerateChatResponse(prompt)` - sets the bot role and generate a response
+* `def generateChatResponse(prompt)` - sets the bot role and generate a response
 
 [helpers.py](helpers.py) - Helper function for the app
 Functions:
@@ -54,7 +54,7 @@ Form input:
 * `Password` - Unique password of the new user
 * `Confirmation` - Password confirmation
 
-[layout.html](/templates/layout.html) - The layout for the entire web application except the landiing page
+[layout.html](/templates/layout.html) - The layout for the entire web application except the landing page
 * `header` - Defines the header for the web application
 * `body` - Defines the block body for the web application
 
@@ -84,7 +84,7 @@ To use Botmate, follow these steps:
 1. Open your web browser and navigate to the Botmate web application
 2. Register, or log in if you already have an account
 3. Type your message in the chat input and click the enter key
-4. Botmate will respod with a relevant message or perform a seach based on your input
+4. Botmate will respond with a relevant message or perform a search based on your input
 5. Use the Image and Video search buttons to perform a search for images or videos.
 
 ## Contributing
@@ -94,7 +94,7 @@ If you would like to contribute to Botmate, follow these steps:
 3. Create a new branch for your changes
 4. Make your changes and test them locally
 5. Push your changes to your forked repository
-6. Submit a pull request to the main Botmatr repository.
+6. Submit a pull request to the main Botmate repository.
 
 ## Credits
 Botmate was created by Damilola Joshua Oluwafemi
