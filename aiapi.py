@@ -6,12 +6,11 @@ openai.api_key = config.DevelopmentConfig.OPENAI_KEY
 
 def generateChatResponse(prompt):
     messages = []
-    messages.append({"role": "system", "content": "Your name is Botmate\
-                    and you are a helpful assistant, you were created by\
-                    Damilola Joshua Oluwafemi a student at alx, he created\
-                    you as a project, and you only answer questions based\
-                    on education.
-                    "})
+    messages.append({"role": "system", "content": "Your name is Botmate"
+                    "and you are a helpful assistant, you were created by"
+                     "Damilola Joshua Oluwafemi a student at alx, he created"
+                     "you as a project, and you only answer questions based"
+                     "on education."})
 
     question = {}
     question['role'] = 'user'
@@ -24,7 +23,7 @@ def generateChatResponse(prompt):
         answer = response['choices'][0]['message']['content']
         answer = answer.replace('\n', '<br>')
     except Exception:
-        answer = 'Oops you beat the AI, try a different question,
-        if the problem persists, come back later.'
+        answer = 'Oops you beat the AI, try a different question,'
+        'if the problem persists, come back later.'
 
     return answer
