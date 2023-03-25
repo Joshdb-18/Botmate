@@ -1,6 +1,7 @@
 import aiapi
 import config
-from flask import Flask, render_template, jsonify, request, flash, logging, url_for, session, redirect
+from flask import Flask, render_template, jsonify
+from flask import request, flash, logging, url_for, session, redirect
 from flask_session import Session
 from flask_sqlalchemy import SQLAlchemy
 from helpers import apology, login_required
@@ -30,12 +31,17 @@ app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
+
 class User(db.Model):
-    """Create User Model which contains id, name, username, email and password"""
+    """
+    Create User Model which contains id, name,
+    username, email and password
+    """
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True)
     password = db.Column(db.String(256), unique=True)
     history = db.Column(db.String(10000), unique=False)
+
 
 @app.after_request
 def after_request(response):
@@ -45,9 +51,11 @@ def after_request(response):
     response.headers["Pragma"] = "no-cache"
     return response
 
+
 @app.route("/")
 def index():
     return render_template("index.html")
+
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -81,7 +89,7 @@ def register():
         elif passwd != confirm:
             return apology("Password must match", 400)
 
-        register = User(username = name, password = passwd)
+        register = User(username=name, password=passwd)
         db.session.add(register)
         db.session.commit()
 
@@ -89,6 +97,7 @@ def register():
     # If user enters via GET
     else:
         return render_template("register.html")
+
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -114,12 +123,11 @@ def login():
             session['user_id'] = True
             return render_template("index.html")
 
-
     # User reached route via GET (as by clicking a link or via redirect)
     return render_template("login.html")
 
 
-@app.route('/chat', methods = ['GET', 'POST'])
+@app.route('/chat', methods=['GET', 'POST'])
 @login_required
 def chat():
     """ Chat with Botmate"""
@@ -134,7 +142,8 @@ def chat():
 
     return render_template('chat.html', **locals())
 
-@app.route('/image', methods = ['GET', 'POST'])
+
+@app.route('/image', methods=['GET', 'POST'])
 @login_required
 def image():
     """ Generate images"""
@@ -144,13 +153,14 @@ def image():
 
     return render_template('image.html')
 
+
 @app.route('/history')
 @login_required
 def history():
     """Shows chat history"""
     message = ""
     id = session["user_id"]
-    chat =  User.query.filter_by(id=id).first()
+    chat = User.query.filter_by(id=id).first()
     history = chat.history
     if history is not None:
         return render_template("history.html", message=history)
@@ -167,6 +177,7 @@ def logout():
 
     # Redirect user to login form
     return redirect("/")
+
 
 if __name__ == '__main__':
     db.create_all()
