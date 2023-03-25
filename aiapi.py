@@ -1,5 +1,6 @@
-import openai
 import config
+import openai
+
 openai.api_key = config.DevelopmentConfig.OPENAI_KEY
 
 def generateChatResponse(prompt):
