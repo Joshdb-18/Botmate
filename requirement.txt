@@ -1,0 +1,12 @@
+config
+flask
+flask_session
+flask_sqlalchemy
+functools
+json
+openai
+os
+requests
+urllib.parse
+
+
