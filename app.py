@@ -161,8 +161,17 @@ def chat():
 def image():
     """ Generate images"""
     if request.method == 'POST':
-        query = request.form['prompt']
-        return render_template('image.html', image="No Image Found")
+        api_key = 'unsplash-api-key'
+        url = 'https://api.unsplash.com/search/photos'
+        prompt = request.form.get("prompt")
+        headers = {'Authorization': f'Client-ID {api_key}'}
+        params = {'query': f'{prompt}', 'per_page': 10000}
+
+        response = requests.get(url, headers=headers, params=params)
+        results = response.json()['results']
+        photo_urls = [result['urls']['regular'] for result in results]
+
+        return render_template('image.html', photo_urls=photo_urls)
 
     return render_template('image.html')
 

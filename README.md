@@ -76,8 +76,9 @@ To install Botmate, follow these steps:
 2. Access Botmate directory: `cd Botmate`
 3. Install the required dependencies by running the command ``pip install requirement.txt``
 4. Get an OPENAI api key and edit the ``config.py`` file
-5. Run the `app.py` file using the command `python3 app.py` or `flask run`
-6. Access the Botmate chatbot at `http://localhost:5000`.
+5. Get an Unsplash api key and edit the ``app.py`` file
+6. Run the `app.py` file using the command `python3 app.py` or `flask run`
+7. Access the Botmate chatbot at `http://localhost:5000`.
 
 ## Usage
 To use Botmate, follow these steps:
