@@ -1,15 +1,15 @@
 import aiapi
 import config
+import json
+import openai
+import os
+import requests
+
 from flask import Flask, render_template, jsonify
 from flask import request, flash, logging, url_for, session, redirect
 from flask_session import Session
 from flask_sqlalchemy import SQLAlchemy
 from helpers import apology, login_required
-from IPython.display import Image, display
-import openai
-import os
-import requests
-import json
 from werkzeug.security import check_password_hash, generate_password_hash
 
 app = Flask(__name__)
