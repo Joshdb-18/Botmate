@@ -32,7 +32,7 @@ List of classes and functions in this app:
 * `class DevelopmentConfig(Config)` - configures the secret key and the api key
 
 [aiapi.py](aiapi.py) - Sets the bot role
-* `def geberateChatResponse(prompt)` - sets the bot role and generate a response
+* `def geNerateChatResponse(prompt)` - sets the bot role and generate a response
 
 [helpers.py](helpers.py) - Helper function for the app
 Functions:
