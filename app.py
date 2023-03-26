@@ -156,8 +156,6 @@ def chat():
             chat_history += save + "\n" + "\n" + "\n"
             user.history = chat_history
             db.session.commit()
-        # res = {}
-        # res['answer'] = aiapi.generateChatResponse(prompt)
         return jsonify(res), 200
 
     return render_template('chat.html', **locals())
