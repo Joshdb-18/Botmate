@@ -77,8 +77,9 @@ To install Botmate, follow these steps:
 3. Install the required dependencies by running the command ``pip install requirement.txt``
 4. Get an OPENAI api key and edit the ``config.py`` file
 5. Get an Unsplash api key and edit the ``app.py`` file
-6. Run the `app.py` file using the command `python3 app.py` or `flask run`
-7. Access the Botmate chatbot at `http://localhost:5000`.
+6. Get a Youtube api key from [here](https://www.console.cloud.google.com), create a new project, then add the youtube api v3 service, then create a new credential and generate an api key, then edit the ``app.py`` file
+7. Run the `app.py` file using the command `python3 app.py` or `flask run`
+8. Access the Botmate chatbot at `http://localhost:5000`.
 
 ## Usage
 To use Botmate, follow these steps:

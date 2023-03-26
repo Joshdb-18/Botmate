@@ -38,3 +38,13 @@ nav .navbar-brand .green {
   height: 70%;
   object-fit: cover;
   }
+.bg-custom {
+  background-color: #9FEAF8;
+  }
+.bg-custom.list-group-item-action:hover {
+  background-color: #0AA2C0;
+  }
+.bg-custom2.list-group-item-action:hover {
+  background-color: #E8EDEF;
+}
+

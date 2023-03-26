@@ -1,20 +1,23 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    Chat
+    Image Search
 {% endblock %}
 
 {% block main %}
-<form action="/image" method="POST">
-  <div class="row">
-    <div class="col-sm-8 col-md-6">
-      <input type="text" class="form-control" name="prompt" placeholder="Search Images">
+<div class="container d-flex justify-content-center">
+  <form action="/video" method="POST" class="w-100">
+    <div class="row">
+      <div class="col-sm-8 col-md-6">
+        <input type="text" class="form-control" name="prompt" placeholder="Search Images">
+      </div>
+      <div class="col-sm-4 col-md-2">
+        <button class="btn btn-primary btn-block" type="submit">Search</button>
+      </div>
     </div>
-    <div class="col-sm-4 col-md-2">
-      <button class="btn btn-primary btn-block" type="submit">Submit</button>
-    </div>
-  </div>
-</form>
+  </form>
+</div>
+
 <br>
 <br>
 {% if photo_urls %}

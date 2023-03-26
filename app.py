@@ -9,6 +9,7 @@ from flask import Flask, render_template, jsonify
 from flask import request, flash, logging, url_for, session, redirect
 from flask_session import Session
 from flask_sqlalchemy import SQLAlchemy
+from googleapiclient.discovery import build
 from helpers import apology, login_required
 from werkzeug.security import check_password_hash, generate_password_hash
 
@@ -138,19 +139,25 @@ def chat():
     """ Chat with Botmate"""
     if request.method == 'POST':
         prompt = request.form['prompt']
+        res = {}
+        res['answer'] = aiapi.generateChatResponse(prompt)
+        save = res['answer']
         id = session["user_id"]
         user = User.query.filter_by(id=id).first()
         chat_history = user.history or ""
         if chat_history is None:
-            update = User(history=prompt)
+            update = User(
+                    history='Input: '+prompt+'\n'
+                    + 'Response: '+save+'\n'+'\n')
             db.session.add(update)
             db.session.commit()
         else:
-            chat_history += prompt + "\n"
+            chat_history += 'Input: ' + prompt + '\n' + 'Response: '
+            chat_history += save + "\n" + "\n" + "\n"
             user.history = chat_history
             db.session.commit()
-        res = {}
-        res['answer'] = aiapi.generateChatResponse(prompt)
+        # res = {}
+        # res['answer'] = aiapi.generateChatResponse(prompt)
         return jsonify(res), 200
 
     return render_template('chat.html', **locals())
@@ -174,6 +181,27 @@ def image():
         return render_template('image.html', photo_urls=photo_urls)
 
     return render_template('image.html')
+
+
+@app.route("/video", methods=["GET", "POST"])
+@login_required
+def video():
+    """ Generate videos"""
+    if request.method == "POST":
+        query = request.form.get("query")
+        api_key = 'api-key'
+        youtube = build('youtube', 'v3', developerKey=api_key)
+        search_request = youtube.search().list(
+            q=query,
+            type='video',
+            part='id,snippet',
+            maxResults=1000
+        )
+        response = search_request.execute()
+        videos = response['items']
+        return render_template('video.html', videos=videos)
+
+    return render_template('video.html')
 
 
 @app.route('/history')
