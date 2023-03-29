@@ -1,13 +1,11 @@
 import aiapi
 import config
-import json
-import openai
 import os
 import requests
 
 from datetime import datetime
 from flask import Flask, render_template, jsonify
-from flask import request, flash, logging, url_for, session, redirect
+from flask import request, flash, url_for, session, redirect
 from flask_session import Session
 from flask_sqlalchemy import SQLAlchemy
 from googleapiclient.discovery import build
