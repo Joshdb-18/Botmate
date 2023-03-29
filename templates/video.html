@@ -1,10 +1,12 @@
-{% extends "layout.html" %}
+{% extends "base.html" %}
 
 {% block title %}
     Video Search
 {% endblock %}
 
 {% block main %}
+<br>
+<br>
 <div class="container d-flex justify-content-center">
   <form action="/video" method="POST" class="w-100">
     <div class="row">
@@ -21,12 +23,13 @@
 <br>
 <br>
 {% if videos %}
-    {% for video in videos %}
-        <div class="video-container">
+    <div class="row">
+      {% for video in videos %}
+        <div class="video-container col-md-6 mb-4">
             <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ video.id.videoId }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            <h6>{{ video.snippet.title }}</h6>
 	</div>
-    {% endfor %}
+      {% endfor %}
+    </div>
 {% endif %}
 
 {% endblock %}

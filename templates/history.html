@@ -1,28 +1,34 @@
-{% extends "layout.html" %}
+{% extends "base.html" %}
 
 {% block title %}
     History
 {% endblock %}
 
 {% block main %}
-
-    {% if message != "No history found" %}
-        <table class="table">
+<br>
+<br>
+    <h3>Chat History for {{ user.username }}</h3>
+    <br>
+    {% if messages != "No history found" %}
+        <table class="table table-light table-striped table-hover">
             <thead>
                 <tr>
-                    <th class="text-start">Chat History</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Prompt</th>
+                    <th scope="col">Response</th>
                 </tr>
             </thead>
-	    <tbody>
-                {% for chats in message  %}
+            <tbody class="table-group-divider">
+                {% for message in messages %}
                     <tr>
-                        <td class="text-start"> {{ chats }} </td>
-                   </tr>
+                        <td>{{ message.date }}</td>
+                        <td>{{ message.prompt }}</td>
+                        <td class="w-50">{{ message.response }}</td>
+                    </tr>
                 {% endfor %}
-	    </tbody>
-	</table>
+            </tbody>
+        </table>
     {% else %}
-	<p>{{ message }} </p>
+        <h5>{{ messages }}</h5>
     {% endif %}
-
 {% endblock %}

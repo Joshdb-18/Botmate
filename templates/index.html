@@ -1,49 +1,332 @@
-{% extends "layout.html" %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block title %}
-    Home
-{% endblock %}
-{% with msg = get_flashed_messages() %}
-{% if msg %}
-<header class="alert alert-primary border text-center" role="alert">
-		{{ msg }}
-</header>
-{% endif %}
-{% endwith %}
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-{% block main %}
-<div class="container">
-      <h1 class="text-center mt-5">Welcome to Botmate</h1>
-      <p class="lead text-center">Your helpful and educational chatbot</p>
-      <div class="row justify-content-center">
-      </div>
-      <div class="row mt-5">
-        <div class="col-md-6">
-          <h2>What can I help you with today?</h2>
-          <ul>
-            <li>What's the weather like?</li>
-            <li>Can you recommend a good book?</li>
-            <li>How do I solve a quadratic equation?</li>
-          </ul>
+  <title>Botmate - Index</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="../static/assets/img/log.png" rel="icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="../static/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="../static/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../static/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="../static/assets/css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+
+      <a href="index.html" class="logo d-flex align-items-center">
+        <img src="../static/assets/img/log.png" alt="">
+        <span>Botmate</span>
+      </a>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+          <li><a class="nav-link scrollto" href="#about">About</a></li>
+          <li><a class="nav-link scrollto" href="#features">Features</a></li>
+          <li><a class="nav-link scrollto" href="#demo">Video Demo</a></li>
+          <li><a class="getstarted scrollto" href="/register">Get Started</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="hero d-flex align-items-center">
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 d-flex flex-column justify-content-center">
+          <h1 data-aos="fade-up">Connecting you to the answers you need, faster than ever before with Botmate</h1>
+          <h2 data-aos="fade-up" data-aos-delay="400">Embark on an adventurous journey of exploring the world through a wide variety of images and videos, while also enjoying the invaluable assistance of a personal chatbot.</h2>
+          <div data-aos="fade-up" data-aos-delay="600">
+            <div class="text-center text-lg-start">
+              <a href="/register" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
+                <span>Get Started</span>
+                <i class="bi bi-arrow-right"></i>
+              </a>
+            </div>
+          </div>
         </div>
-        <div class="col-md-6">
-          <h2>Looking for educational resources?</h2>
-          <ul>
-            <li><a href="#">Online courses</a></li>
-            <li><a href="#">Tutorials</a></li>
-            <li><a href="#">Educational websites</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="row mt-5">
-        <div class="col-md-12">
-          <h2>Contact us</h2>
-          <p>Have a question or feedback about Botmate? Feel free to get in touch:</p>
-          <ul>
-            <li>Email: botmate@domain.com</li>
-            <li>Twitter: <a href="#">@botmate</a></li>
-          </ul>
+        <div class="col-lg-6 hero-img" data-aos="zoom-out" data-aos-delay="200">
+          <img src="../static/assets/img/hero-img1.jpg" class="img-fluid" alt="">
         </div>
       </div>
     </div>
-{% endblock %}
+
+  </section><!-- End Hero -->
+
+  <main id="main">
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+
+      <div class="container" data-aos="fade-up">
+        <div class="row gx-0">
+
+          <div class="col-lg-6 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="200">
+            <div class="content">
+              <h3>About Botmate</h3>
+              <h2>A comprehensive portrayal of the creator, and a detailed account of the inspiration that led to the development of Botmate</h2>
+              <p>
+                As a student of Holberton School, I, Damilola Joshua Oluwafemi, take great pride in being the creator of Botmate, an innovative chatbot. Botmate is a personal assistant that was inspired by the powerful chatgpt model created by OpenAI. My long-standing passion for developing chatbots was reignited when I learned about the capabilities of chatgpt. This led me to undertake the ambitious project of developing Botmate, which I am delighted to have accomplished as my portfolio project for Holberton School. Along the way, I gained invaluable experience in coding and artificial intelligence, which will undoubtedly serve me well in my future endeavors.
+              </p>
+	      <div class="social-links mt-3">
+	        <a href="https://twitter.com/cremow_" class="twitter"><i class="bi bi-twitter h3"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+	        <a href="https://www.linkedin.com/in/joshua-albert-8b9376215" class="linkedin"><i class="bi bi-linkedin h3"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+	        <a href="https://github.com/Joshdb-18" class="github"><i class="bi bi-github h3"></i></a>
+		<br>
+		<br>
+		<h3><a href="https://github.com/Joshdb-18/Botmate">Take a look at the project on github</a></h3>
+              </div>
+            </div>
+	  </div>
+          <div id="demo" class="col-lg-6 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
+            <img src="../static/assets/img/about.jpg" class="img-fluid" alt="">
+          </div>
+
+        </div>
+      </div>
+
+    </section><!-- End About Section -->
+
+    <!-- ======= Features Section ======= -->
+    <section id="features" class="features">
+
+      <div class="container" data-aos="fade-up">
+
+        <header class="section-header">
+          <h2>Features</h2>
+          <p>Botmate has recently introduced a range of new features which includes: </p>
+        </header>
+
+        <div class="row">
+
+          <div class="col-lg-6">
+            <img src="../static/assets/img/features.png" class="img-fluid" alt="">
+          </div>
+
+          <div class="col-lg-6 mt-5 mt-lg-0 d-flex">
+            <div class="row align-self-center gy-4">
+
+              <div class="col-md-6" data-aos="zoom-out" data-aos-delay="200">
+                <div class="feature-box d-flex align-items-center">
+                  <i class="bi bi-check"></i>
+                  <h3>Image Search</h3>
+                </div>
+              </div>
+
+              <div class="col-md-6" data-aos="zoom-out" data-aos-delay="300">
+                <div class="feature-box d-flex align-items-center">
+                  <i class="bi bi-check"></i>
+                  <h3>Video Search</h3>
+                </div>
+              </div>
+
+              <div class="col-md-6" data-aos="zoom-out" data-aos-delay="400">
+                <div class="feature-box d-flex align-items-center">
+                  <i class="bi bi-check"></i>
+                  <h3>Engage in chat conversations</h3>
+                </div>
+              </div>
+
+              <div class="col-md-6" data-aos="zoom-out" data-aos-delay="500">
+                <div class="feature-box d-flex align-items-center">
+                  <i class="bi bi-check"></i>
+                  <h3>Display chat histories</h3>
+                </div>
+              </div>
+
+              <div class="col-md-6" data-aos="zoom-out" data-aos-delay="600">
+                <div class="feature-box d-flex align-items-center">
+                  <i class="bi bi-check"></i>
+                  <h3>Facilitate account registration</h3>
+                </div>
+              </div>
+
+              <div class="col-md-6" data-aos="zoom-out" data-aos-delay="700">
+                <div class="feature-box d-flex align-items-center">
+                  <i class="bi bi-check"></i>
+                  <h3>Facilitate account login</h3>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div> <!-- / row -->
+
+    <!-- ======= F.A.Q Section ======= -->
+    <section id="faq" class="faq">
+
+      <div class="container" data-aos="fade-up">
+
+        <header class="section-header">
+          <h2>F.A.Q</h2>
+          <p>Frequently Asked Questions</p>
+        </header>
+
+        <div class="row">
+          <div class="col-lg-6">
+            <!-- F.A.Q List 1-->
+            <div class="accordion accordion-flush" id="faqlist1">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-1">
+                    What types of questions can Botmate answer?
+                  </button>
+                </h2>
+                <div id="faq-content-1" class="accordion-collapse collapse" data-bs-parent="#faqlist1">
+                  <div class="accordion-body">
+                    Botmate is designed to answer educational based questions. It can answer questions related to history, science, mathematics, language, and more.
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-2">
+                    How accurate are Botmate's answers?
+                  </button>
+                </h2>
+                <div id="faq-content-2" class="accordion-collapse collapse" data-bs-parent="#faqlist1">
+                  <div class="accordion-body">
+                    Botmate's answers are sourced from reputable educational websites and databases. However, Botmate cannot guarantee 100% accuracy and it's always recommended to double-check the information.
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-3">
+                    Can Botmate search for images and videos?
+                  </button>
+                </h2>
+                <div id="faq-content-3" class="accordion-collapse collapse" data-bs-parent="#faqlist1">
+                  <div class="accordion-body">
+                    Yes, Botmate has a built-in image and video search feature. Simply type in your query and Botmate will display relevant results.
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+
+            <!-- F.A.Q List 2-->
+            <div class="accordion accordion-flush" id="faqlist2">
+
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2-content-1">
+                    Is Botmate able to have a conversation beyond answering questions?
+                  </button>
+                </h2>
+                <div id="faq2-content-1" class="accordion-collapse collapse" data-bs-parent="#faqlist2">
+                  <div class="accordion-body">
+                    Botmate is designed as a personal assistant and can engage in limited conversation beyond answering questions. However, its primary function is to provide educational information.
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2-content-2">
+                    Can I suggest a new feature for Botmate?
+                  </button>
+                </h2>
+                <div id="faq2-content-2" class="accordion-collapse collapse" data-bs-parent="#faqlist2">
+                  <div class="accordion-body">
+                    Botmate is constantly evolving and open to new ideas. You can suggest new features and improvements through its official website or social media channels.
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2-content-3">
+                    Can I teach Botmate new things or add new responses?
+                  </button>
+                </h2>
+                <div id="faq2-content-3" class="accordion-collapse collapse" data-bs-parent="#faqlist2">
+                  <div class="accordion-body">
+                    Unfortunately, at the moment Botmate is not designed to learn or be customized by users. Its responses are pre-programmed and focused on providing educational-based answers. However, we are constantly updating and improving Botmate's capabilities, so stay tuned for any future updates.
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section><!-- End F.A.Q Section -->
+
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-5 col-md-12 footer-info">
+            <a href="index.html" class="logo d-flex align-items-center">
+              <img src="assets/img/log.png" alt="">
+              <span>Botmate</span>
+            </a>
+            <p>Botmate, an intelligent chatbot, has been designed with cutting-edge features such as image and video search capabilities, as well as chat functionalities.</p>
+            <div class="social-links mt-3">
+              <a href="https://twitter.com/cremow_" class="twitter"><i class="bi bi-twitter"></i></a>
+              <a href="https://www.linkedin.com/in/joshua-albert-8b9376215" class="linkedin"><i class="bi bi-linkedin"></i></a>
+              <a href="https://github.com/Joshdb-18" class="github"><i class="bi bi-github"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bi bi-chevron-right"></i> <a href="#hero">Home</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="#about">About us</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="#features">Features</a></li>
+	      <li><i class="bi bi-chevron-right"></i> <a href="#demo">Video Demo</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="../static/assets/vendor/aos/aos.js"></script>
+  <script src="../static/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="../static/assets/js/main.js"></script>
+
+</body>
+
+</html>

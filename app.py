@@ -5,6 +5,7 @@ import openai
 import os
 import requests
 
+from datetime import datetime
 from flask import Flask, render_template, jsonify
 from flask import request, flash, logging, url_for, session, redirect
 from flask_session import Session
@@ -38,10 +39,18 @@ class User(db.Model):
     Create User Model which contains id, name,
     username, email and password
     """
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     username = db.Column(db.String(80), unique=True)
     password = db.Column(db.String(256), unique=True)
-    history = db.Column(db.String(10000), unique=False)
+    history = db.relationship('History', backref='user', lazy=True)
+
+
+class History(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    prompt = db.Column(db.String(10000), nullable=False)
+    response = db.Column(db.String(10000), nullable=False)
 
 
 @app.after_request
@@ -92,9 +101,12 @@ def register():
 
         passwd = generate_password_hash(passwd, method='pbkdf2:sha256',
                                         salt_length=8)
-        register = User(username=name, password=passwd)
-        db.session.add(register)
+        user = User(username=name, password=passwd)
+        db.session.add(user)
         db.session.commit()
+
+        # If the user was successfully created, store their ID in the session
+        session['user_id'] = user.id
 
         return redirect(url_for("login"))
     # If user enters via GET
@@ -123,9 +135,9 @@ def login():
 
         login = User.query.filter_by(username=name).first()
         if login and check_password_hash(login.password, passw):
-            session['user_id'] = True
+            session['user_id'] = login.id
             flash("Welcome!")
-            return render_template("chat.html")
+            return redirect(url_for('chat'))
 
         return apology("Invalid username and/or password", 403)
 
@@ -137,28 +149,36 @@ def login():
 @login_required
 def chat():
     """ Chat with Botmate"""
+    user_id = session.get('user_id')
+    history = History.query.filter_by(user_id=user_id).all()
+
     if request.method == 'POST':
         prompt = request.form['prompt']
         res = {}
         res['answer'] = aiapi.generateChatResponse(prompt)
-        save = res['answer']
-        id = session["user_id"]
-        user = User.query.filter_by(id=id).first()
-        chat_history = user.history or ""
-        if chat_history is None:
-            update = User(
-                    history='Input: '+prompt+'\n'
-                    + 'Response: '+save+'\n'+'\n')
-            db.session.add(update)
-            db.session.commit()
+        response = res['answer']
+        if history:
+            last_history = history[-1]
+            if last_history.response != response:
+                new_history = History(
+                        user_id=user_id,
+                        date=datetime.utcnow(),
+                        prompt=prompt,
+                        response=response)
+                db.session.add(new_history)
+                db.session.commit()
         else:
-            chat_history += 'Input: ' + prompt + '\n' + 'Response: '
-            chat_history += save + "\n" + "\n" + "\n"
-            user.history = chat_history
+            new_history = History(
+                    user_id=user_id,
+                    date=datetime.utcnow(),
+                    prompt=prompt,
+                    response=response)
+            db.session.add(new_history)
             db.session.commit()
+
         return jsonify(res), 200
 
-    return render_template('chat.html', **locals())
+    return render_template('chat.html')
 
 
 @app.route('/image', methods=['GET', 'POST'])
@@ -166,7 +186,7 @@ def chat():
 def image():
     """ Generate images"""
     if request.method == 'POST':
-        api_key = 'unsplash-api-key'
+        api_key = 'unsplash api key'
         url = 'https://api.unsplash.com/search/photos'
         prompt = request.form.get("prompt")
         headers = {'Authorization': f'Client-ID {api_key}'}
@@ -187,7 +207,7 @@ def video():
     """ Generate videos"""
     if request.method == "POST":
         query = request.form.get("query")
-        api_key = 'api-key'
+        api_key = 'youtube api key'
         youtube = build('youtube', 'v3', developerKey=api_key)
         search_request = youtube.search().list(
             q=query,
@@ -202,18 +222,23 @@ def video():
     return render_template('video.html')
 
 
-@app.route('/history')
+@app.route('/history/<int:user_id>')
 @login_required
-def history():
+def history(user_id):
     """Shows chat history"""
-    message = ""
-    user_id = session["user_id"]
-    chat = User.query.filter_by(id=user_id).first()
-    history = chat.history
+    user = User.query.get(user_id)
+    history = user.history
     if history:
-        return render_template("history.html", message=history.split('\n'))
+        messages = []
+        for h in history:
+            messages.append({
+                'date': h.date.strftime("%Y-%m-%d %H:%M:%S"),
+                'prompt': h.prompt,
+                'response': h.response.replace('<br>', " ")
+                })
+        return render_template("history.html", messages=messages, user=user)
     else:
-        return render_template("history.html", message="No history found")
+        return render_template("history.html", messages="No history found", user=user)
 
 
 @app.route("/logout")

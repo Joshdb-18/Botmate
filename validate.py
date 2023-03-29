@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-from app import db, User
+from app import db, User, History
 from flask import Flask
 
 app = Flask(__name__)

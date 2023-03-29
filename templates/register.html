@@ -1,20 +1,52 @@
-{% extends "layout.html" %}
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Botmate - Register</title>
 
-{% block title %}
-    Register
-{% endblock %}
+        <!-- CSS -->
+        <link rel="stylesheet" href="../static/assets/css/register.css">
+                
+        <!-- Boxicons CSS -->
+        <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+	<link href="../static/assets/img/log.png" rel="icon">
+                        
+    </head>
+    <body>
+        <section class="container forms">
+            <div class="form login">
+                <div class="form-content">
+                    <header>Signup</header>
+                    <form action="/register" method="post">
+                        <div class="field input-field">
+                            <input autocomplete="off" autofocus type="text" placeholder="Username" class="input" name="username">
+                        </div>
 
-{% block main %}
-    <form action="/register" method="post" class="text-center">
-        <div class="mb-3">
-            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="username" name="username" placeholder="Username" type="text">
-        </div>
-        <div class="mb-3">
-            <input class="form-control mx-auto w-auto" id="password" name="password" placeholder="Password" type="password">
-        </div>
-        <div class="mb-3">
-            <input class="form-control mx-auto w-auto" id="password" name="confirmation" placeholder="Confirm Password" type="password">
-        </div>
-        <button class="btn btn-primary" type="submit">Register</button>
-    </form>
-{% endblock %}
+                        <div class="field input-field">
+                            <input autocomplete="off" autofocus type="password" placeholder="Create password" class="password" name="password">
+			    <i class='bx bx-hide eye-icon'></i>
+                        </div>
+
+                        <div class="field input-field">
+                            <input autocomplete="off" autofocus type="password" placeholder="Confirm password" class="password" name="confirmation">
+                            <i class='bx bx-hide eye-icon'></i>
+                        </div>
+
+                        <div class="field button-field">
+                            <button type="submit">Signup</button>
+                        </div>
+                    </form>
+		    <div class="form-link">
+                        <span>Already have an account? <a href="/login" class="link login-link">Login</a></span>
+                    </div>
+		</div>
+            </div>
+        </section>
+
+        <!-- JavaScript -->
+        <script src="../static/assets/js/register.js"></script>
+    </body>
+</html>
+
