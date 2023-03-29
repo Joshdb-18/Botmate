@@ -25,9 +25,9 @@
 {% if photo_urls %}
   <div class="row">
   {% for photo_url in photo_urls %}
-      <!-- <a href="{{ photo_url }}" download="photo.jpg">-->
 	<div class="col-sm-3 mb-4">
-          <img src="{{ photo_url }}" alt="Photo" class="img-fluid" width="300" height="200">
+	  <a href="{{ phto_url }}" download="photo.jpg">
+          <img src="{{ photo_url }}" alt="Photo" class="img-fluid" width="300" height="200"></a>
         </div>
   {% endfor %}
   </div>

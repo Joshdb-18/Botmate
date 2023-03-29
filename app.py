@@ -188,7 +188,7 @@ def chat():
 def image():
     """ Generate images"""
     if request.method == 'POST':
-        api_key = 'unsplash api key'
+        api_key = 'api-key'
         url = 'https://api.unsplash.com/search/photos'
         prompt = request.form.get("prompt")
         headers = {'Authorization': f'Client-ID {api_key}'}

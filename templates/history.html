@@ -7,7 +7,7 @@
 {% block main %}
 <br>
 <br>
-    <h3>Chat History for {{ user.username }}</h3>
+    <h3 class="text-center">Chat History for {{ user.username.capitalize() }}</h3>
     <br>
     {% if messages != "No history found" %}
         <table class="table table-light table-striped table-hover">
