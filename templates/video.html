@@ -25,9 +25,12 @@
 {% if videos %}
     <div class="row">
       {% for video in videos %}
-        <div class="video-container col-md-6 mb-4">
+        <div class="video-container col-md-6 col-lg-6 mb-4">
             <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ video.id.videoId }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 	</div>
+	{% if loop.index is divisibleby 2 %}
+            </div><div class="row">
+        {% endif %}
       {% endfor %}
     </div>
 {% endif %}

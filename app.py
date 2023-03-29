@@ -24,7 +24,6 @@ app.config["TEMPLATES_AUTO_RELOAD"] = True
 
 # Database configuration
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
-# 'mysql://root:root@localhost/auth'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -46,6 +45,9 @@ class User(db.Model):
 
 
 class History(db.Model):
+    """ Create History Model which is a one
+    to many relationship
+    """
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
@@ -207,7 +209,7 @@ def video():
     """ Generate videos"""
     if request.method == "POST":
         query = request.form.get("query")
-        api_key = 'youtube api key'
+        api_key = 'api-key'
         youtube = build('youtube', 'v3', developerKey=api_key)
         search_request = youtube.search().list(
             q=query,
@@ -238,7 +240,8 @@ def history(user_id):
                 })
         return render_template("history.html", messages=messages, user=user)
     else:
-        return render_template("history.html", messages="No history found", user=user)
+        return render_template("history.html", messages="No history found",
+                               user=user)
 
 
 @app.route("/logout")
