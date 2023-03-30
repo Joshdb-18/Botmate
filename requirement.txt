@@ -4,7 +4,6 @@ flask_session
 flask_sqlalchemy
 functools
 google-api-python-client
-json
 openai
 os
 requests
