@@ -39,7 +39,7 @@ Functions:
 * `def apology(message, code=400)` - Render message as apology to user when an error is encountered
 * `def login_required(f)` - Decorates routes to require login
 
-[validate.py](validate.py) - Creates database
+[validate.py](validate.py) - Creates database, make sure you run this code using ``python3 validate.py`` or ``./validate.py`` to create the database
  
 #### `templates/` directory contains templates used for this project
 [login.html](/templates/login.html) - The login page
