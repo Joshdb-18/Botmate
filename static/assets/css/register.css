@@ -169,3 +169,29 @@ a.google span{
     }
     
 }
+.password-requirements-container {
+  display: none;
+}
+
+.password-requirements {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.password-requirements li {
+  margin-bottom: 5px;
+}
+
+.password-requirements .valid {
+  color: green;
+}
+
+.password-requirements .invalid {
+  color: red;
+}
+
+.password-requirements .tiny-text {
+  font-size: 10px;
+}
+

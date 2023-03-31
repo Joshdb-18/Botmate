@@ -20,19 +20,31 @@
                 <div class="form-content">
                     <header>Signup</header>
                     <form action="/register" method="post">
+			<div class="field input-field">
+				<input autocomplete="off" autofocus type="email" placeholder="Email" class="input" name="email">
+			</div>
                         <div class="field input-field">
                             <input autocomplete="off" autofocus type="text" placeholder="Username" class="input" name="username">
                         </div>
 
                         <div class="field input-field">
-                            <input autocomplete="off" autofocus type="password" placeholder="Create password" class="password" name="password">
+                            <input autocomplete="off" autofocus type="password" placeholder="Create password" id="password" class="password" name="password">
 			    <i class='bx bx-hide eye-icon'></i>
                         </div>
-
+			<div class="password-requirements-container">
+      			  <ul class="password-requirements">
+        		    <li class="length">At least 8 characters</li>
+        		    <li class="lowercase">At least one lowercase letter</li>
+        		    <li class="uppercase">At least one uppercase letter</li>
+        		    <li class="number">At least one number</li>
+        		    <li class="special">At least one special character</li>
+      			  </ul>
+    		        </div>
                         <div class="field input-field">
-                            <input autocomplete="off" autofocus type="password" placeholder="Confirm password" class="password" name="confirmation">
+                            <input autocomplete="off" autofocus type="password" id="confirm-password" placeholder="Confirm password" class="password" name="confirmation">
                             <i class='bx bx-hide eye-icon'></i>
                         </div>
+			<span id="password-mismatch" style="display:none; color:red;">Password doesn't match</span><br>
 
                         <div class="field button-field">
                             <button type="submit">Signup</button>
@@ -46,7 +58,9 @@
         </section>
 
         <!-- JavaScript -->
-        <script src="../static/assets/js/register.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="../static/assets/js/register.js"></script>
+
     </body>
 </html>
 

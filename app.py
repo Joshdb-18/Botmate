@@ -2,6 +2,7 @@ import aiapi
 import config
 import os
 import requests
+import re
 
 from datetime import datetime
 from flask import Flask, render_template, jsonify
@@ -37,7 +38,8 @@ class User(db.Model):
     username, email and password
     """
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    username = db.Column(db.String(80), unique=True)
+    email = db.Column(db.String(80), unique=True)
+    username = db.Column(db.String(80), unique=False)
     password = db.Column(db.String(256), unique=True)
     history = db.relationship('History', backref='user', lazy=True)
 
@@ -64,6 +66,10 @@ def after_request(response):
 
 @app.route("/")
 def index():
+
+    # Clear any current session before redirect
+    session['user_id'] = False
+
     return render_template("index.html")
 
 
@@ -74,18 +80,28 @@ def register():
     # Ensure user enters via POST
     if request.method == "POST":
 
+        email = request.form.get("email")
         name = request.form.get("username")
         passwd = request.form.get("password")
         confirm = request.form.get("confirmation")
-        usernameCheck = User.query.filter_by(username=name).first()
+        pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+        emailCheck = User.query.filter_by(email=email).first()
 
-        # Ensure username was submitted
-        if not name:
+        # Ensure email was submitted
+        if not email:
+            return apology("Must provide an email", 400)
+
+        # Ensure the email is valid
+        elif re.match(pattern, email) is None:
+            return apology("Invalid email", 400)
+
+        # Ensure username is submitted
+        elif not name:
             return apology("Must provide a name", 400)
-
+        
         # Else if username already exists
-        elif usernameCheck is not None:
-            return apology("Username already exists", 400)
+        elif emailCheck is not None:
+            return apology("Email already exists", 400)
 
         # Else if password was not submitted
         elif not passwd:
@@ -101,7 +117,7 @@ def register():
 
         passwd = generate_password_hash(passwd, method='pbkdf2:sha256',
                                         salt_length=8)
-        user = User(username=name, password=passwd)
+        user = User(email=email, username=name, password=passwd)
         db.session.add(user)
         db.session.commit()
 
@@ -124,19 +140,18 @@ def login():
     # User reached route via POST (as by submitting a form via POST)
     if request.method == "POST":
         # checking that user exists
-        name = request.form.get("username")
+        email = request.form.get("email")
         passw = request.form.get("password")
-        if not name:
-            return apology("Must provide username", 403)
+        if not email:
+            return apology("Must provide email", 403)
 
         # Ensure password was submitted
         elif not passw:
             return apology("Must provide password", 403)
 
-        login = User.query.filter_by(username=name).first()
+        login = User.query.filter_by(email=email).first()
         if login and check_password_hash(login.password, passw):
             session['user_id'] = login.id
-            flash("Welcome!")
             return redirect(url_for('chat'))
 
         return apology("Invalid username and/or password", 403)
@@ -149,7 +164,11 @@ def login():
 @login_required
 def chat():
     """ Chat with Botmate"""
+
+    # Get the current logged in user
     user_id = session.get('user_id')
+
+    # Get the id of the user in the history model
     history = History.query.filter_by(user_id=user_id).all()
 
     if request.method == 'POST':

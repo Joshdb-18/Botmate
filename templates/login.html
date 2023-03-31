@@ -21,14 +21,22 @@
                     <header>Login</header>
                     <form action="/login" method="post">
                         <div class="field input-field">
-                            <input autocomplete="off" autofocus type="text" placeholder="Username" class="input" name="username">
+                            <input autocomplete="off" autofocus type="email" placeholder="Email" class="input" name="email">
                         </div>
 
                         <div class="field input-field">
-                            <input autocomplete="off" autofocus type="password" placeholder="Enter password" class="password" name="password">
+                            <input autocomplete="off" autofocus id="password" type="password" placeholder="Enter password" class="password" name="password">
                             <i class='bx bx-hide eye-icon'></i>
                         </div>
-
+			<div class="password-requirements-container">
+      			  <ul class="password-requirements">
+        		    <li class="length">At least 8 characters</li>
+        		    <li class="lowercase">At least one lowercase letter</li>
+        		    <li class="uppercase">At least one uppercase letter</li>
+        		    <li class="number">At least one number</li>
+        		    <li class="special">At least one special character</li>
+      			  </ul>
+    			</div>
                         <div class="field button-field">
                             <button type="submit">Login</button>
                         </div>
@@ -41,6 +49,7 @@
         </section>
 
         <!-- JavaScript -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="../static/assets/js/register.js"></script>
     </body>
 </html>
