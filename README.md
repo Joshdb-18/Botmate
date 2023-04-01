@@ -104,4 +104,4 @@ Botmate was created by Damilola Joshua Oluwafemi
 ## License
 Botmate is licensed under the MIT license. See the LICENSE file for more information
 
-Check out the full deployment off the app [here](http://jalcy.pythonanywhere.com)
+Check out the full deployment off the app [here](https://jalcy.pythonanywhere.com)
