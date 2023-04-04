@@ -100,7 +100,7 @@ To use Botmate, follow these steps:
 ![Chat Image](https://github.com/Joshdb-18/Botmate/blob/main/screenshots/chat1.png)
 ![Chat Image](https://github.com/Joshdb-18/Botmate/blob/main/screenshots/chat2.png)
 ![image](https://github.com/Joshdb-18/Botmate/blob/main/screenshots/image.png)
-![image](https://github.com/Joshdb-18/Botmate/blob/main/screenshots/image2.png)
+![image](https://github.com/Joshdb-18/Botmate/blob/main/screenshots/image1.png)
 ![History](https://github.com/Joshdb-18/Botmate/blob/main/screenshots/history.png)
 ![History](https://github.com/Joshdb-18/Botmate/blob/main/screenshots/history.png)
 
