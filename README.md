@@ -90,9 +90,20 @@ To use Botmate, follow these steps:
 5. Use the Image and Video search buttons to perform a search for images or videos.
 
 ## Screenshots
+![Home Image](https://github.com/Joshdb-18/Botmate/blob/main/screenshots/home.png)
+![Home Image](https://github.com/Joshdb-18/Botmate/blob/main/screenshots/home1.png)
+![Home Image](https://github.com/Joshdb-18/Botmate/blob/main/screenshots/home2.png)
+![Home Image](https://github.com/Joshdb-18/Botmate/blob/main/screenshots/home3.png)
+![Register](https://github.com/Joshdb-18/Botmate/blob/main/screenshots/register.png)
+![Login](https://github.com/Joshdb-18/Botmate/blob/main/screenshots/login.png)
 ![Chat Image](https://github.com/Joshdb-18/Botmate/blob/main/screenshots/chat.png)
 ![Chat Image](https://github.com/Joshdb-18/Botmate/blob/main/screenshots/chat1.png)
 ![Chat Image](https://github.com/Joshdb-18/Botmate/blob/main/screenshots/chat2.png)
+![image](https://github.com/Joshdb-18/Botmate/blob/main/screenshots/image.png)
+![image](https://github.com/Joshdb-18/Botmate/blob/main/screenshots/image2.png)
+![History](https://github.com/Joshdb-18/Botmate/blob/main/screenshots/history.png)
+![History](https://github.com/Joshdb-18/Botmate/blob/main/screenshots/history.png)
+
 ## Contributing
 If you would like to contribute to Botmate, follow these steps:
 1. Fork the Botmate repository to your GitHub account
