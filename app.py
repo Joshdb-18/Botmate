@@ -98,7 +98,7 @@ def register():
         # Ensure username is submitted
         elif not name:
             return apology("Must provide a name", 400)
-        
+
         # Else if username already exists
         elif emailCheck is not None:
             return apology("Email already exists", 400)

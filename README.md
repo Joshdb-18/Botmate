@@ -89,6 +89,10 @@ To use Botmate, follow these steps:
 4. Botmate will respond with a relevant message or perform a search based on your input
 5. Use the Image and Video search buttons to perform a search for images or videos.
 
+## Screenshots
+![Chat Image](https://github.com/Joshdb-18/Botmate/blob/main/screenshots/chat.png)
+![Chat Image](https://github.com/Joshdb-18/Botmate/blob/main/screenshots/chat1.png)
+![Chat Image](https://github.com/Joshdb-18/Botmate/blob/main/screenshots/chat2.png)
 ## Contributing
 If you would like to contribute to Botmate, follow these steps:
 1. Fork the Botmate repository to your GitHub account
